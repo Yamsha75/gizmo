@@ -7,7 +7,6 @@ latent_vehicles = {}
 -- }
 
 function addLatentVehicle(vehicle, data)
-    print("latent vehicle!!!")
     latent_vehicles[vehicle] = data or {}
     addEventHandler("onClientElementStreamIn", vehicle, syncLatentVehicles)
 end
