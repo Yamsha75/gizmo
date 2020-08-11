@@ -126,7 +126,7 @@ end
 function forgetNonExistingVehicles()
     local checkedcount = 0
     while true do
-        for vehicle, _ in pairs(vehicles) do
+        for vehicle, _ in pairs(latent_vehicles) do
             if not isElement(vehicle) then forgetVehicle(vehicle) end
             checkedcount = checkedcount + 1
             if checkedcount >= 1000 then
