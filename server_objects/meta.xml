@@ -1,0 +1,13 @@
+<meta>
+    <info author="Yamsha" version="0" name="Synchronized object functions" description="Add sync for object functions which exist only client-side" type="script" />
+    <min_mta_version client="1.5.6" server="1.5.6" />
+    <oop>true</oop>
+
+    <script src="server_objects_c.lua" type="client" />
+    <script src="server_objects_s.lua" type="server" />
+
+    <export function="setObjectBreakable" type="server" />
+    <export function="getObjectBreakable" type="server" />
+    <export function="setObjectMass" type="server" />
+    <export function="getObjectMass" type="server" />
+</meta>
