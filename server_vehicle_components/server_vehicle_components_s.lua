@@ -110,9 +110,9 @@ function forgetNonExistingVehicles()
         coroutine.yield()
     end
 end
-clearing_nonexisting_vehicless = coroutine.create(forgetNonExistingVehicles)
+clearing_nonexisting_vehicles = coroutine.create(forgetNonExistingVehicles)
 setTimer(
     function()
-        coroutine.resume(clearing_nonexisting_vehicless)
+        coroutine.resume(clearing_nonexisting_vehicles)
     end, 2500, 0
 )
