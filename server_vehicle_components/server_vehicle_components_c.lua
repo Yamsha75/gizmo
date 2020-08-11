@@ -8,7 +8,7 @@ latent_vehicles = {}
 
 function addLatentVehicle(vehicle, data)
     latent_vehicles[vehicle] = data or {}
-    addEventHandler("onClientElementStreamIn", vehicle, syncLatentVehicles)
+    addEventHandler("onClientElementStreamIn", vehicle, syncLatentVehicle)
 end
 
 function syncVehicleComponentVisible(component, visible)
@@ -91,8 +91,8 @@ end
 addEvent("server_vehicle_components:sendData", true)
 addEventHandler("server_vehicle_components:sendData", resourceRoot, receiveData)
 
-function syncLatentVehicles()
-    removeEventHandler("onClientElementStreamIn", source, syncLatentVehicles)
+function syncLatentVehicle()
+    removeEventHandler("onClientElementStreamIn", source, syncLatentVehicle)
 
     local vehicle_data = latent_vehicles[source]
     if not vehicle_data then return end
