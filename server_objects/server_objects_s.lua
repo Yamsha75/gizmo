@@ -6,12 +6,14 @@ function setObjectBreakable(object, enabled)
     if getElementType(object) ~= "object" then return false end
     breakable[object] = enabled
     triggerClientEvent("server_objects:setObjectBreakable", object, enabled)
+    return true
 end
 
 function setObjectMass(object, value)
     if getElementType(object) ~= "object" then return false end
     new_mass[object] = value
     triggerClientEvent("server_objects:setObjectMass", object, value)
+    return true
 end
 
 -- sync functions
