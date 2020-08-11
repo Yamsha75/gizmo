@@ -116,7 +116,7 @@ function syncLatentVehicles()
         end
     end
 
-    latent_vehicles[source] = nil
+    forgetVehicle(source)
 end
 
 function forgetVehicle(vehicle)
