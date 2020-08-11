@@ -15,6 +15,7 @@ addEventHandler("server_objects:setObjectMass", root, syncSetObjectMass)
 local function sendReadyMessage()
     triggerServerEvent("server_objects:requestData", resourceRoot)
 end
+addEventHandler("onClientResourceStart", resourceRoot, sendReadyMessage)
 
 local function receiveData(breakable, new_mass)
     for object, enabled in pairs(breakable) do setObjectBreakable(object, enabled) end
