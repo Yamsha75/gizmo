@@ -7,7 +7,7 @@
     <script src="server_objects_s.lua" type="server" />
 
     <export function="setObjectBreakable" type="server" />
-    <export function="getObjectBreakable" type="server" />
+    <export function="isObjectBreakable" type="server" />
     <export function="setObjectMass" type="server" />
     <export function="getObjectMass" type="server" />
 </meta>
