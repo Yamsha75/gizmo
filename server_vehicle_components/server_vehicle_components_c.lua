@@ -119,3 +119,28 @@ function syncLatentVehicles()
 
     latent_vehicles[source] = nil
 end
+
+function forgetVehicle(vehicle)
+    latent_vehicles[vehicle] = nil
+end
+
+function forgetNonExistingVehicles()
+    local checkedcount = 0
+    while true do
+        for vehicle, _ in pairs(vehicles) do
+            if not isElement(vehicle) then forgetVehicle(vehicle) end
+            checkedcount = checkedcount + 1
+            if checkedcount >= 1000 then
+                coroutine.yield()
+                checkedcount = 0
+            end
+        end
+        coroutine.yield()
+    end
+end
+clearing_nonexisting_vehicles = coroutine.create(forgetNonExistingVehicles)
+setTimer(
+    function()
+        coroutine.resume(clearing_nonexisting_vehicles)
+    end, 2500, 0
+)
