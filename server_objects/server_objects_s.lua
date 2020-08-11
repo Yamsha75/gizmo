@@ -4,11 +4,7 @@ local new_mass = {}
 
 function setObjectBreakable(object, enabled)
     if getElementType(object) ~= "object" then return false end
-    if not enabled then
-        breakable[object] = nil
-    else
-        breakable[object] = true
-    end
+    breakable[object] = enabled
     triggerClientEvent("server_objects:setObjectBreakable", object, enabled)
 end
 
