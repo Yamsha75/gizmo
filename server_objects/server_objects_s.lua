@@ -30,7 +30,7 @@ addEvent("server_objects:requestData", true)
 addEventHandler("server_objects:requestData", root, sendData)
 
 local function removeDataSentFlag()
-    if isElement(source) then data_sent[source] = nil end
+    if isElement(source) then clients_synced[source] = nil end
 end
 addEventHandler("onPlayerQuit", root, removeDataSentFlag)
 
