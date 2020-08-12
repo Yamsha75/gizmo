@@ -1,0 +1,30 @@
+function drawBoundingBox(element)
+    local x_min, y_min, z_min, x_max, y_max, z_max = getElementBoundingBox(element)
+    if not x_min then return false end
+    local e = Vector3(x_min, y_min, z_min)
+    local s = Vector3(x_max, y_max, z_max)
+    local m = element.matrix
+    -- abc; a=top/bottom; b=front/back; c=left/right
+    local tfl = m:transformPosition(e.x, s.y, s.z)
+    local tfr = m:transformPosition(s.x, s.y, s.z)
+    local bfr = m:transformPosition(s.x, s.y, e.z)
+    local bfl = m:transformPosition(e.x, s.y, e.z)
+    local tbl = m:transformPosition(e.x, e.y, s.z)
+    local tbr = m:transformPosition(s.x, e.y, s.z)
+    local bbr = m:transformPosition(s.x, e.y, e.z)
+    local bbl = m:transformPosition(e.x, e.y, e.z)
+
+    local color = tocolor(255, 0, 0, 128)
+    dxDrawLine3D(tfl, tfr, color, 5)
+    dxDrawLine3D(tfr, bfr, color, 5)
+    dxDrawLine3D(bfr, bfl, color, 5)
+    dxDrawLine3D(bfl, tfl, color, 5)
+    dxDrawLine3D(tbl, tbr, color, 5)
+    dxDrawLine3D(tbr, bbr, color, 5)
+    dxDrawLine3D(bbr, bbl, color, 5)
+    dxDrawLine3D(bbl, tbl, color, 5)
+    dxDrawLine3D(tfl, tbl, color, 5)
+    dxDrawLine3D(tfr, tbr, color, 5)
+    dxDrawLine3D(bfr, bbr, color, 5)
+    dxDrawLine3D(bfl, bbl, color, 5)
+end
