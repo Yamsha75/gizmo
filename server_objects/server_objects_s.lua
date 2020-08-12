@@ -19,7 +19,7 @@ end
 
 function isObjectBreakable(object)
     if not (isElement(object) and getElementType(object) == "object") then
-        return false
+        return nil
     end
     local object_data = objects[object]
     if not object_data then return nil end
