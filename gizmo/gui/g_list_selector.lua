@@ -105,11 +105,9 @@ end
 
 local focus = false
 function onGUIFocusHandler()
-    print("got focoos")
     focus = true
 end
 function onGUIBlurHandler()
-    print("lost focoos")
     focus = false
 end
 
