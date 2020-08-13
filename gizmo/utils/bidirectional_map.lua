@@ -1,60 +1,60 @@
-BiDirectionalMap = {}
-BiDirectionalMap.__index = BiDirectionalMap
+BiMap = {}
+BiMap.__index = BiMap
 
-function BiDirectionalMap.new()
-    local self = setmetatable({}, BiDirectionalMap)
-    self.indexes = {} -- maps element => index
-    self.elements = {} -- maps index => element
+function BiMap.new()
+    local self = setmetatable({}, BiMap)
+    self.indexes = {} -- maps value => index
+    self.values = {} -- maps index => value
     return self
 end
 
-function BiDirectionalMap.pairs(self)
+function BiMap.pairs(self)
     return pairs(self.indexes)
 end
 
-function BiDirectionalMap.ipairs(self, start_index)
-    local iterator = ipairs(self.elements)
-    return iterator, self.elements, start_index and start_index - 1 or 0
+function BiMap.ipairs(self, start_index)
+    local iterator = ipairs(self.values)
+    return iterator, self.values, start_index and start_index - 1 or 0
 end
 
-function BiDirectionalMap.exists(self, element)
-    return self.indexes[element] ~= nil
+function BiMap.exists(self, value)
+    return self.indexes[value] ~= nil
 end
 
-function BiDirectionalMap.append(self, element)
-    local new_index = #(self.elements) + 1
-    self.elements[new_index] = element
-    self.indexes[element] = new_index
+function BiMap.append(self, value)
+    local new_index = #(self.values) + 1
+    self.values[new_index] = value
+    self.indexes[value] = new_index
     return true
 end
 
-function BiDirectionalMap.appendIfExists(self, element)
-    if not self:exists(element) then return self:append(element) end
+function BiMap.appendIfExists(self, value)
+    if not self:exists(value) then return self:append(value) end
 end
 
-function BiDirectionalMap.rawRemove(self, index, element)
-    self.indexes[element] = nil
-    table.remove(self.elements, index)
+function BiMap.rawRemove(self, index, value)
+    self.indexes[value] = nil
+    table.remove(self.values, index)
     for i, e in self:ipairs(index) do self.indexes[e] = i end
     return true
 end
 
-function BiDirectionalMap.removeIndex(self, index)
-    local element = self.elements[index]
+function BiMap.removeIndex(self, index)
+    local value = self.values[index]
     if not index then return false end
-    return rawRemove(self, index, element)
+    return self:rawRemove(index, value)
 end
 
-function BiDirectionalMap.removeElement(self, element)
-    local index = self.indexes[element]
+function BiMap.removeValue(self, value)
+    local index = self.indexes[value]
     if not index then return false end
-    return rawRemove(self, index, element)
+    return self:rawRemove(index, value)
 end
 
-function BiDirectionalMap.getIndex(self, element)
-    return self.indexes[element]
+function BiMap.getIndex(self, value)
+    return self.indexes[value]
 end
 
-function BiDirectionalMap.getElement(self, index)
-    return self.elements[index]
+function BiMap.getValue(self, index)
+    return self.values[index]
 end
