@@ -140,7 +140,7 @@ function chooseElement(button)
     end
 end
 
-local elements_map = BiDirectionalMap.new()
+local elements_map = BiMap.new()
 local selected_item_index = 0
 
 local function refreshGUI()
